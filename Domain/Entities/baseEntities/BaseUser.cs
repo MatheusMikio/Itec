@@ -1,0 +1,34 @@
+﻿using Domain.Enums;
+using Domain.models;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Domain.entities.baseEntities
+{
+    public abstract class BaseUser : BaseModel
+    {
+
+        public string Nome { get; private set; }
+        public Guid PublicId { get; private set; } = Guid.NewGuid();
+        public Role Role { get; private set; }
+        public string SenhaHash { get; private set; }
+        public FormaPagamento FormaPagamento { get; private set; }
+        public Contato Contato { get; private set; }
+        public Endereco Endereco { get; private set; }
+        public IList<Agendamento> HistoricoAgendameto { get; private set; } = new List<Agendamento>();
+        public bool Ativo { get; private set; } = true;
+        protected BaseUser(string nome, Role role, string senhaHash, FormaPagamento formaPagamento, Contato contato, Endereco endereco)
+        {
+            Nome = nome;
+            Role = role;
+            SenhaHash = senhaHash;
+            FormaPagamento = formaPagamento;
+            Contato = contato;
+            Endereco = endereco;
+        }
+
+        protected BaseUser() { }
+
+    }
+}

@@ -1,0 +1,6 @@
+@Itec_HostAddress = http://localhost:5261
+
+GET {{Itec_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
