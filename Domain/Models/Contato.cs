@@ -4,9 +4,19 @@ using System.Text;
 
 namespace Domain.models
 {
-    public class Contato(string telefone, string email)
+    public class Contato
     {
-        public string Telefone { get; private set; } = telefone;
-        public string Email { get; private set; } = email;
+        public string Telefone { get; private set; } = string.Empty;
+        public string Email { get; private set; } = string.Empty;
+
+        public Contato(string telefone, string email)
+        {
+            Telefone = telefone;
+            Email = email;
+        }
+
+        protected Contato()
+        {
+        }
     }
 }

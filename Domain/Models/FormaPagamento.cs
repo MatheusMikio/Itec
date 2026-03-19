@@ -4,9 +4,19 @@ using System.Text;
 
 namespace Domain.models
 {
-    public class FormaPagamento(Cartao cartao, string chavePix = "")
+    public class FormaPagamento
     {
-        public Cartao Cartao { get; private set; } = cartao;
-        public string ChavePix { get; private set; } = chavePix;
+        public Cartao Cartao { get; private set; }
+        public string ChavePix { get; private set; } = string.Empty;
+
+        public FormaPagamento(Cartao cartao, string chavePix = "")
+        {
+            Cartao = cartao;
+            ChavePix = chavePix;
+        }
+
+        protected FormaPagamento()
+        {
+        }
     }
 }

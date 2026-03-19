@@ -1,4 +1,6 @@
 <Solution>
+  <Project Path="Application/Application.csproj" Id="df31ade5-74cd-442e-af5d-40756b5b4b21" />
   <Project Path="Domain/Domain.csproj" />
+  <Project Path="InfraStructure/InfraStructure.csproj" Id="a2a0f542-f532-4eec-abbb-15894d1c5b17" />
   <Project Path="Itec/Itec.csproj" />
 </Solution>

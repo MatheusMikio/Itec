@@ -4,10 +4,21 @@ using System.Text;
 
 namespace Domain.models
 {
-    public class Cartao(string numero, string bandeira, DateTime validade)
+    public class Cartao
     {
-        public string Numero { get; private set; } = numero;
-        public string Bandeira { get; private set; } = bandeira;
-        public DateTime Validade { get; private set; } = validade;
+        public string Numero { get; private set; } = string.Empty;
+        public string Bandeira { get; private set; } = string.Empty;
+        public DateTime Validade { get; private set; }
+
+        public Cartao(string numero, string bandeira, DateTime validade)
+        {
+            Numero = numero;
+            Bandeira = bandeira;
+            Validade = validade;
+        }
+
+        protected Cartao()
+        {
+        }
     }
 }

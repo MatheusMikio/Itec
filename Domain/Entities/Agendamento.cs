@@ -31,7 +31,7 @@ namespace Domain.entities
         protected Agendamento() { }
 
         public void VincularFatura(long faturaId)
-        {
+        { 
             FaturaId = faturaId;
         }
 
