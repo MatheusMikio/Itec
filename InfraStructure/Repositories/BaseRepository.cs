@@ -18,7 +18,10 @@ namespace InfraStructure.Repositories
             _context = context;
         }
 
-        public async Task<List<T>> GetAll(int page, int size) => await _context.Set<T>().Skip((page - 1) * size).Take(size).ToListAsync();
+        public async Task<List<T>> GetAll(int page, int size) => await _context.Set<T>()
+            .Skip((page - 1) * size)
+            .Take(size)
+            .ToListAsync();
 
         public async Task<T> GetById(long id) => await _context.Set<T>().FindAsync(id);
         public async Task<T> GetById(Guid id) => await _context.Set<T>().FindAsync(id);
