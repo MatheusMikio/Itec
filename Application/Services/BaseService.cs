@@ -2,6 +2,7 @@
 using Domain.Interfaces.Services;
 using Domain.models;
 using Mapster;
+using Application.Mapping;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,10 +14,12 @@ namespace Application.Services
         where DTOResponse : class
     {
         protected readonly IBaseRepository<T> _repository;
+        protected readonly IMapper _mapper;
 
-        public BaseService(IBaseRepository<T> repository)
+        public BaseService(IBaseRepository<T> repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         public async Task<OperationResult<List<DTOResponse>>> GetAll(int page, int size)
@@ -27,7 +30,7 @@ namespace Application.Services
                 return OperationResult<List<DTOResponse>>.Ok(new List<DTOResponse>());
             }
 
-            List<DTOResponse> mappedEntities = entities.Adapt<List<DTOResponse>>();
+            List<DTOResponse> mappedEntities = _mapper.Map<List<DTOResponse>>(entities);
             return OperationResult<List<DTOResponse>>.Ok(mappedEntities);
         }
 
@@ -39,7 +42,7 @@ namespace Application.Services
                 return OperationResult<DTOResponse>.NotFound(new MensagemErro(typeof(T).Name, "Não encontrado."));
             }
 
-            DTOResponse mappedEntity = entity.Adapt<DTOResponse>();
+            DTOResponse mappedEntity = _mapper.Map<DTOResponse>(entity);
             return OperationResult<DTOResponse>.Ok(mappedEntity);   
         }
 
@@ -51,7 +54,7 @@ namespace Application.Services
                 return OperationResult<DTOResponse>.NotFound(new MensagemErro(typeof(T).Name, "Não encontrado."));
             }
 
-            DTOResponse mappedEntity = entity.Adapt<DTOResponse>();
+            DTOResponse mappedEntity = _mapper.Map<DTOResponse>(entity);
             return OperationResult<DTOResponse>.Ok(mappedEntity);
         }
 

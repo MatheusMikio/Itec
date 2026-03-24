@@ -1,8 +1,10 @@
 using InfraStructure.Context;
 using Microsoft.EntityFrameworkCore;
+using Application.Mapping;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddApplicationMapping();
 builder.Services.AddDbContext<ItecDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 // Add services to the container.
