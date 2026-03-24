@@ -38,15 +38,15 @@ namespace Itec.Controllers
         }
 
 
-        [HttpGet("{id:guid}")]
-        public async Task<IActionResult> GetById(Guid id)
-        {
-            var result = await _service.GetById(id);
+        //[HttpGet("{id:guid}")] COLOCAR APENAS NAS CONTROLLERS DE CLIENTE E TECNICO, POIS SÓ ELAS USAM GUID
+        //public async Task<IActionResult> GetById(Guid id)
+        //{
+        //    var result = await _service.GetById(id);
 
-            if (result.Success != true) return StatusCode(result.StatusCode, result.Errors);
+        //    if (result.Success != true) return StatusCode(result.StatusCode, result.Errors);
 
-            return StatusCode(result.StatusCode, result.Data);
-        }
+        //    return StatusCode(result.StatusCode, result.Data);
+        //}
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(long id)
