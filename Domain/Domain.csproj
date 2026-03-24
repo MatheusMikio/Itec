@@ -6,13 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="DTOs\Fatura\" />
-    <Folder Include="DTOs\Servico\" />
-    <Folder Include="DTOs\Tecnico\" />
-    <Folder Include="DTOs\Cliente\" />
-    <Folder Include="DTOs\Agendamento\" />
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-
 </Project>

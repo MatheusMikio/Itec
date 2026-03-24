@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Domain.Interfaces.Services;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Application.Services
 {
-    internal class Servico
+    public class Servico : IServicoService
     {
     }
 }
