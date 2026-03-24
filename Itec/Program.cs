@@ -1,13 +1,17 @@
 using InfraStructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Application.Mapping;
+using Domain.Interfaces.Services;
+using Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplicationMapping();
 builder.Services.AddDbContext<ItecDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 // Add services to the container.
+builder.Services.AddScoped<IClienteService, ClienteService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

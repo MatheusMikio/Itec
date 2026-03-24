@@ -1,11 +1,42 @@
-﻿using Domain.Interfaces.Services;
+﻿using Application.Mapping;
+using Domain.DTOs.Cliente;
+using Domain.entities;
+using Domain.Interfaces.Repositories;
+using Domain.Interfaces.Services;
+using Domain.models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Application.Services
 {
-    public class ClienteService : IClienteService
+    public class ClienteService : BaseService<Cliente, ClienteResponse>, IClienteService
     {
+        public ClienteService(IBaseRepository<Cliente> repository, IMapper mapper) : base(repository, mapper)
+        {
+        }
+
+        public Task<OperationResult> Create(ClienteRequest request)
+        {
+            List<MensagemErro> errors = Validate(request);
+            
+            if (errors.Count > 0) return Task.FromResult(OperationResult.UnprocessableEntity(errors));
+
+            try
+            {
+                _repository.Create(_mapper.Map<Cliente>(request));
+                return Task.FromResult(OperationResult.Created());
+            }
+            catch
+            {
+                MensagemErro error = new("Database", "Erro Inesperado");
+                return Task.FromResult(OperationResult.FatalError(error));
+            }
+        }
+
+        private static List<MensagemErro> Validate(ClienteRequest request) 
+        {
+            return new List<MensagemErro>();
+        }
     }
 }

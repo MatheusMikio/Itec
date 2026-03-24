@@ -7,7 +7,7 @@ public class OperationResult
     public int StatusCode { get; protected init; }
     public IReadOnlyList<MensagemErro> Errors => _errors;
 
-    protected OperationResult(bool success, int statusCode, IEnumerable<MensagemErro>? errors = null)
+    protected OperationResult(bool success, int statusCode, IEnumerable<MensagemErro> ? errors = null)
     {
         Success = success;
         StatusCode = statusCode;
@@ -26,13 +26,14 @@ public class OperationResult
     public static OperationResult Forbidden(MensagemErro error) => new(false, 403, [error]);
     public static OperationResult UnprocessableEntity(IEnumerable<MensagemErro> errors) => new(false, 422, errors);
     public static OperationResult UnprocessableEntity(MensagemErro error) => new(false, 422, [error]);
+    public static OperationResult FatalError(MensagemErro error) => new(false, 500, [error]);
 }
 
 public class OperationResult<T> : OperationResult
 {
     public T ? Data { get; private init; }
 
-    private OperationResult(bool success, int statusCode, T? data = default, IEnumerable<MensagemErro>? errors = null)
+    private OperationResult(bool success, int statusCode, T? data = default, IEnumerable<MensagemErro> ? errors = null)
         : base(success, statusCode, errors)
     {
         Data = data;
