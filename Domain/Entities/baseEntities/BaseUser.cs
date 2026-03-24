@@ -18,6 +18,8 @@ namespace Domain.entities.baseEntities
         public Endereco Endereco { get; private set; }
         public IList<Agendamento> HistoricoAgendameto { get; private set; } = new List<Agendamento>();
         public bool Ativo { get; private set; } = true;
+        public string RefreshToken { get; private set; }
+        public DateTime TokenIssuedAt { get; private set; }
         protected BaseUser(string nome, Role role, string senhaHash, FormaPagamento formaPagamento, Contato contato, Endereco endereco)
         {
             Nome = nome;
