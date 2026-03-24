@@ -26,5 +26,36 @@ namespace Itec.Controllers
 
             return StatusCode(result.StatusCode, result.Data);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(long id)
+        {
+            var result = await _service.GetById(id);
+
+            if (result.Success != true) return StatusCode(result.StatusCode, result.Errors);
+
+            return StatusCode(result.StatusCode, result.Data);
+        }
+
+
+        [HttpGet("{id:guid}")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var result = await _service.GetById(id);
+
+            if (result.Success != true) return StatusCode(result.StatusCode, result.Errors);
+
+            return StatusCode(result.StatusCode, result.Data);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(long id)
+        {
+            var result = await _service.Delete(id);
+
+            if (result.Success != true) return StatusCode(result.StatusCode, result.Errors);
+
+            return StatusCode(result.StatusCode);
+        }
     }
 }
