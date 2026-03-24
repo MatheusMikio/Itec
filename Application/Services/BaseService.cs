@@ -1,5 +1,6 @@
 ﻿using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
+using Domain.models;
 using Mapster;
 using System;
 using System.Collections.Generic;
@@ -30,19 +31,40 @@ namespace Application.Services
             return OperationResult<List<DTOResponse>>.Ok(mappedEntities);
         }
 
-        public Task<OperationResult<DTOResponse>> GetById(long id)
+        public async Task<OperationResult<DTOResponse>> GetById(long id)
         {
-            throw new NotImplementedException();
+            T entity = await _repository.GetById(id);
+            if (entity == null)
+            {
+                return OperationResult<DTOResponse>.NotFound(new MensagemErro(typeof(T).Name, "Não encontrado."));
+            }
+
+            DTOResponse mappedEntity = entity.Adapt<DTOResponse>();
+            return OperationResult<DTOResponse>.Ok(mappedEntity);   
         }
 
-        public Task<OperationResult<DTOResponse>> GetById(Guid id)
+        public async Task<OperationResult<DTOResponse>> GetById(Guid id)
         {
-            throw new NotImplementedException();
+            T entity = await _repository.GetById(id);
+            if (entity == null)
+            {
+                return OperationResult<DTOResponse>.NotFound(new MensagemErro(typeof(T).Name, "Não encontrado."));
+            }
+
+            DTOResponse mappedEntity = entity.Adapt<DTOResponse>();
+            return OperationResult<DTOResponse>.Ok(mappedEntity);
         }
 
-        public Task<OperationResult> Delete(long id)
+        public async Task<OperationResult> Delete(long id)
         {
-            throw new NotImplementedException();
+            T entity = await _repository.GetById(id);
+            if (entity == null)
+            {
+                return OperationResult<DTOResponse>.NotFound(new MensagemErro(typeof(T).Name, "Não encontrado."));
+            }
+
+            await _repository.Delete(entity);
+            return OperationResult.Ok();
         }
     }
 }
