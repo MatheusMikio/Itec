@@ -25,13 +25,23 @@ namespace Itec.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody]ClienteRequest request)
+        public async Task<ActionResult> Create([FromBody] ClienteRequest request)
         {
             var result = await _service.Create(request);
 
             if (result.Success != true) return StatusCode(result.StatusCode, result.Errors);
 
-            return StatusCode(result.StatusCode, result.Data);
+            return StatusCode(result.StatusCode, result.Success);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> Update([FromBody] ClienteUpdate request)
+        {
+            var result = await _service.Update(request);
+
+            if (result.Success != true) return StatusCode(result.StatusCode, result.Errors);
+
+            return StatusCode(result.StatusCode, result.Success);
         }
     }
 }

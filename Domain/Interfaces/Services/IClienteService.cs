@@ -8,5 +8,6 @@ namespace Domain.Interfaces.Services
     public interface IClienteService : IBaseService<ClienteResponse>
     {
         Task<OperationResult> Create(ClienteRequest request);
+        Task<OperationResult> Update(ClienteUpdate request);
     }
 }

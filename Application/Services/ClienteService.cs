@@ -34,7 +34,31 @@ namespace Application.Services
             }
         }
 
+        public Task<OperationResult> Update(ClienteUpdate request)
+        {
+            List<MensagemErro> errors = ValidateUpdate(request);
+
+            if (errors.Count > 0) return Task.FromResult(OperationResult.UnprocessableEntity(errors));
+
+            try
+            {
+                _repository.Update(_mapper.Map<Cliente>(request));
+                return Task.FromResult(OperationResult.Ok());
+
+            }
+            catch
+            {
+                MensagemErro error = new("Database", "Erro Inesperado");
+                return Task.FromResult(OperationResult.FatalError(error));
+            }        
+        }
+
         private static List<MensagemErro> Validate(ClienteRequest request) 
+        {
+            return new List<MensagemErro>();
+        }
+
+        private static List<MensagemErro> ValidateUpdate(ClienteUpdate request)
         {
             return new List<MensagemErro>();
         }
