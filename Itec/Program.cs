@@ -19,6 +19,14 @@ builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<ITecnicoService, TecnicoService>();
 builder.Services.AddScoped<ITecnicoRepository, TecnicoRepository>();
 
+builder.Services.AddScoped<IAgendamentoService, AgendamentoService>();
+builder.Services.AddScoped<IAgendamentoRepository, AgendamentoRepository>();
+
+builder.Services.AddScoped<IFaturaService, FaturaService>();
+builder.Services.AddScoped<IFaturaRepository, FaturaRepository>();
+
+builder.Services.AddScoped<IServicoService, ServicoService>();
+builder.Services.AddScoped<IServicoRepository, ServicoRepository>();
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
