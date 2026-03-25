@@ -4,7 +4,6 @@
     {
         Task<OperationResult<List<TResponseDTO>>> GetAll(int page, int size);
         Task<OperationResult<TResponseDTO>> GetById(long id);
-        Task<OperationResult<TResponseDTO>> GetById(Guid id);
         Task<OperationResult> Delete(long id);
     }
 }

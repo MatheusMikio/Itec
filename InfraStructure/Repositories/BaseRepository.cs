@@ -24,24 +24,23 @@ namespace InfraStructure.Repositories
             .ToListAsync();
 
         public async Task<T> GetById(long id) => await _context.Set<T>().FindAsync(id);
-        public async Task<T> GetById(Guid id) => await _context.Set<T>().FindAsync(id);
 
         public async Task Create(T entity)
         {
             _context.Set<T>().Add(entity);
-            _context.SaveChanges();
+            _context.SaveChangesAsync();
         }
 
         public async Task Update(T entity)
         {
             _context.Set<T>().Update(entity);
-            _context.SaveChanges();
+            _context.SaveChangesAsync();
         }
 
         public async Task Delete(T entity)
         {
             _context.Set<T>().Remove(entity);
-            _context.SaveChanges();
+            _context.SaveChangesAsync();
         }
         
     }

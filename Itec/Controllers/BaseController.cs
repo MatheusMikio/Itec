@@ -6,9 +6,9 @@ namespace Itec.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public abstract class BaseController<TEntity, TService> : ControllerBase
-        where TEntity : class
-        where TService : IBaseService<TEntity>
+    public abstract class BaseController<TResponseDTO, TService> : ControllerBase
+        where TResponseDTO : class
+        where TService : IBaseService<TResponseDTO>
     {
         protected readonly TService _service;
 

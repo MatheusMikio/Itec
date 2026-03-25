@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Domain.DTOs.Fatura
+namespace Domain.DTOs.Tecnico
 {
     public class TecnicoResponse
     {

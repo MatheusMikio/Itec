@@ -1,4 +1,4 @@
-﻿using Domain.DTOs.Cliente;
+﻿using Domain.DTOs.Tecnico;
 using Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,14 +6,13 @@ namespace Itec.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClienteController : BaseUserController<ClienteResponse, IClienteService>
+    public class TecnicoController : BaseUserController<TecnicoResponse, ITecnicoService>
     {
-        public ClienteController(IClienteService service) : base(service)
+        public TecnicoController(ITecnicoService service) : base(service)
         {
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] ClienteRequest request)
+        public async Task<IActionResult> Create([FromBody] TecnicoRequest request)
         {
             OperationResult result = await _service.Create(request);
 
@@ -22,8 +21,7 @@ namespace Itec.Controllers
             return StatusCode(result.StatusCode);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> Update([FromBody] ClienteUpdate request)
+        public async Task<IActionResult> Update([FromBody] TecnicoUpdate request)
         {
             OperationResult result = await _service.Update(request);
 

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Application.Services
 {
-    public class Servico : IServicoService
+    public class ServicoService : IServicoService
     {
     }
 }

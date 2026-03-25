@@ -46,18 +46,6 @@ namespace Application.Services
             return OperationResult<DTOResponse>.Ok(mappedEntity);   
         }
 
-        public async Task<OperationResult<DTOResponse>> GetById(Guid id)
-        {
-            T entity = await _repository.GetById(id);
-            if (entity == null)
-            {
-                return OperationResult<DTOResponse>.NotFound(new MensagemErro(typeof(T).Name, "Não encontrado."));
-            }
-
-            DTOResponse mappedEntity = _mapper.Map<DTOResponse>(entity);
-            return OperationResult<DTOResponse>.Ok(mappedEntity);
-        }
-
         public async Task<OperationResult> Delete(long id)
         {
             T entity = await _repository.GetById(id);
