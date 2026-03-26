@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Itec.Controllers
+namespace Itec.Controllers.Base
 {
     [Route("api/[controller]")]
     [ApiController]

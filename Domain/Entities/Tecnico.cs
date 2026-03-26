@@ -1,4 +1,5 @@
-﻿using Domain.entities.baseEntities;
+﻿using Domain.DTOs.Tecnico;
+using Domain.entities.baseEntities;
 using Domain.Enums;
 using Domain.models;
 using System;
@@ -9,16 +10,15 @@ namespace Domain.entities
 {
     public class Tecnico : BaseUser
     {
-        public string CpfCnpj { get; private set; }
-        public string Descricao { get; private set; }
+        public string CpfCnpj { get; private set; } = string.Empty;
+        public string Descricao { get; private set; } = string.Empty;
         public IList<Servico> Servicos { get; private set; } = new List<Servico>();
 
 
-        public Tecnico(string cpfCnpj, string descricao, string nome, Role role, string senhaHash, FormaPagamento formaPagamento, Contato contato, Endereco endereco)
-            : base(nome, role, senhaHash, formaPagamento, contato, endereco)
+        public Tecnico(TecnicoRequest request) : base(request)
         {
-            CpfCnpj = cpfCnpj;
-            Descricao = descricao;
+            CpfCnpj = request.CnpjCpf;
+            Descricao = request.Descricao;
         }
 
         protected Tecnico() { }

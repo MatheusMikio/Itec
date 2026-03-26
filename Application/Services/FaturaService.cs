@@ -15,15 +15,5 @@ namespace Application.Services
         public FaturaService(IFaturaRepository repository, IMapper mapper) : base(repository, mapper)
         {
         }
-
-        public Task<OperationResult> Create(FaturaRequest request)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<OperationResult> Update(FaturaUpdate request)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

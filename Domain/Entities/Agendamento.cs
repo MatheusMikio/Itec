@@ -1,4 +1,5 @@
-﻿using Domain.entities.baseEntities;
+﻿using Domain.DTOs.Agendamento;
+using Domain.entities.baseEntities;
 using Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -16,16 +17,16 @@ namespace Domain.entities
         public long ServicoId { get; private set; }
         public Servico Servico { get; set; }
         public decimal Valor { get; private set; } = 0;
-        public long? FaturaId { get; private set; }
+        public long ? FaturaId { get; private set; }
         public Fatura Fatura { get; set; }
         public StatusAgendamento Status { get; private set; } = StatusAgendamento.Pendente;
 
-        public Agendamento(DateTime data, long tecnicoId, long clientId, long servicoId)
+        public Agendamento(AgendamentoRequest request)
         {
-            Data = data;
-            TecnicoId = tecnicoId;
-            ClienteId = clientId;
-            ServicoId = servicoId;
+            Data = request.Data;
+            TecnicoId = request.TecnicoId;
+            ClienteId = request.ClienteId;
+            ServicoId = request.ServicoId;
         }
 
         protected Agendamento() { }

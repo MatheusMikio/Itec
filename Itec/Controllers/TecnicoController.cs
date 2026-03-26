@@ -1,5 +1,6 @@
 ﻿using Domain.DTOs.Tecnico;
 using Domain.Interfaces.Services;
+using Itec.Controllers.Base;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Itec.Controllers

@@ -1,5 +1,6 @@
 ﻿using Domain.DTOs.Cliente;
 using Domain.Interfaces.Services;
+using Itec.Controllers.Base;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Itec.Controllers

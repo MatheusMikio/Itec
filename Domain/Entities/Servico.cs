@@ -1,4 +1,5 @@
-﻿using Domain.entities.baseEntities;
+﻿using Domain.DTOs.Servico;
+using Domain.entities.baseEntities;
 using Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -16,14 +17,14 @@ namespace Domain.entities
         public long TecnicoId { get; private set; }
         public Tecnico Tecnico { get; set; }
 
-        public Servico(string nome, decimal minPreco, decimal maxPreco, string descricao, long tecnicoId, Categorias categoria)
+        public Servico(ServicoRequest request)
         {
-            Nome = nome;
-            MinPreco = minPreco;
-            MaxPreco = maxPreco;
-            Descricao = descricao;
-            TecnicoId = tecnicoId;
-            Categoria = categoria;
+            Nome = request.Nome;
+            MinPreco = request.MinPreco;
+            MaxPreco = request.MaxPreco;
+            Descricao = request.Descricao;
+            TecnicoId = request.TecnicoId;
+            Categoria = request.Categoria;
         }
 
         protected Servico() { }

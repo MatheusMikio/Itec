@@ -1,4 +1,6 @@
-﻿using Domain.Enums;
+﻿using Domain.DTOs;
+using Domain.DTOs.Cliente;
+using Domain.Enums;
 using Domain.models;
 using System;
 using System.Collections.Generic;
@@ -20,14 +22,14 @@ namespace Domain.entities.baseEntities
         public bool Ativo { get; private set; } = true;
         public string RefreshToken { get; private set; }
         public DateTime TokenIssuedAt { get; private set; }
-        protected BaseUser(string nome, Role role, string senhaHash, FormaPagamento formaPagamento, Contato contato, Endereco endereco)
+        protected BaseUser(BaseUserRequest request)
         {
-            Nome = nome;
-            Role = role;
-            SenhaHash = senhaHash;
-            FormaPagamento = formaPagamento;
-            Contato = contato;
-            Endereco = endereco;
+            Nome = request.Nome;
+            Role = request.Role;
+            SenhaHash = request.SenhaHash;
+            FormaPagamento = request.FormaPagamento;
+            Contato = request.Contato;
+            Endereco = request.Endereco;
         }
 
         protected BaseUser() { }

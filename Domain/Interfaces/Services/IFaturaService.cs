@@ -7,7 +7,5 @@ namespace Domain.Interfaces.Services
 {
     public interface IFaturaService : IBaseService<FaturaResponse>
     {
-        Task<OperationResult> Create(FaturaRequest request);
-        Task<OperationResult> Update(FaturaUpdate request);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Domain.DTOs.Agendamento;
 using Domain.Interfaces.Services;
+using Itec.Controllers.Base;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

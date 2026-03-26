@@ -1,4 +1,5 @@
-﻿using Domain.entities.baseEntities;
+﻿using Domain.DTOs.Cliente;
+using Domain.entities.baseEntities;
 using Domain.Enums;
 using Domain.models;
 using System;
@@ -11,10 +12,9 @@ namespace Domain.entities
     {
         public string CPF { get; private set; }
 
-        public Cliente(string cpf, string nome, Role role, string senhaHash, FormaPagamento formaPagamento, Contato contato, Endereco endereco)
-            : base(nome, role, senhaHash, formaPagamento, contato, endereco)
+        public Cliente(ClienteRequest request) : base(request)
         {
-            CPF = cpf;
+            CPF = request.CPF;
         }
 
         protected Cliente() { }
