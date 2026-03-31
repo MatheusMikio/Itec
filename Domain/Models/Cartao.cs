@@ -1,24 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Domain.models
+﻿public class Cartao
 {
-    public class Cartao
+    public string CustomerId { get; private set; } = string.Empty;
+    public string CardId { get; private set; } = string.Empty;
+
+    public string UltimosQuatroDigitos { get; private set; } = string.Empty;
+    public string Bandeira { get; private set; } = string.Empty;
+
+    public int MesExpiracao { get; private set; }
+    public int AnoExpiracao { get; private set; }
+
+    public Cartao(
+        string ultimosQuatroDigitos,
+        string bandeira,
+        int mesExpiracao,
+        int anoExpiracao,
+        string customerId,
+        string cardId)
     {
-        public string Numero { get; private set; } = string.Empty;
-        public string Bandeira { get; private set; } = string.Empty;
-        public DateTime Validade { get; private set; }
-
-        public Cartao(string numero, string bandeira, DateTime validade)
-        {
-            Numero = numero;
-            Bandeira = bandeira;
-            Validade = validade;
-        }
-
-        protected Cartao()
-        {
-        }
+        CustomerId = customerId;
+        CardId = cardId;
+        UltimosQuatroDigitos = ultimosQuatroDigitos;
+        Bandeira = bandeira;
+        MesExpiracao = mesExpiracao;
+        AnoExpiracao = anoExpiracao;
     }
+
+    protected Cartao() { }
 }

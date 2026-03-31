@@ -1,11 +1,6 @@
 ﻿using Domain.DTOs.Tecnico;
 using Domain.entities.baseEntities;
-using Domain.Enums;
 using Domain.models;
-using Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Domain.entities
 {
