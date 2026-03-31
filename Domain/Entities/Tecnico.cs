@@ -2,6 +2,7 @@
 using Domain.entities.baseEntities;
 using Domain.Enums;
 using Domain.models;
+using Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,13 +13,14 @@ namespace Domain.entities
     {
         public string CpfCnpj { get; private set; } = string.Empty;
         public string Descricao { get; private set; } = string.Empty;
-        public IList<Servico> Servicos { get; private set; } = new List<Servico>();
+        public IList<Servico> Servicos { get; private set; } = [];
+        public IList<HorarioDisponibilidade> Horarios { get; private set; } = [];
 
-
-        public Tecnico(TecnicoRequest request) : base(request)
+        public Tecnico(TecnicoRequest request, List<HorarioDisponibilidade> horarios) : base(request)
         {
             CpfCnpj = request.CnpjCpf;
             Descricao = request.Descricao;
+            Horarios = horarios;
         }
 
         protected Tecnico() { }
