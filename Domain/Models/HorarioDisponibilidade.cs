@@ -3,12 +3,12 @@
     public class HorarioDisponibilidade
     {
         public DayOfWeek Dia { get; private set; }
-        public TimeSpan Inicio { get; private set; }
-        public TimeSpan Fim { get; private set; }
+        public TimeOnly Inicio { get; private set; }
+        public TimeOnly Fim { get; private set; }
 
         protected HorarioDisponibilidade() { }
 
-        private HorarioDisponibilidade(DayOfWeek dia, TimeSpan inicio, TimeSpan fim)
+        private HorarioDisponibilidade(DayOfWeek dia, TimeOnly inicio, TimeOnly fim)
         {
             Dia = dia;
             Inicio = inicio;
