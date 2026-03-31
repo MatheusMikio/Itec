@@ -16,7 +16,7 @@
         }
 
         // Factory que evita lançar exceções (segue a preferência por OperationResult-style)
-        public static (bool Success, string ? Error, HorarioDisponibilidade ? Value) Create(DayOfWeek dia, TimeSpan inicio, TimeSpan fim)
+        public static (bool Success, string ? Error, HorarioDisponibilidade ? Value) Create(DayOfWeek dia, TimeOnly inicio, TimeOnly fim)
         {
             if (inicio >= fim) return (false, "Horario inválido: início deve ser anterior ao fim.", null);
 
