@@ -5,9 +5,7 @@ using System.Text;
 
 namespace Domain.Interfaces.Services
 {
-    public interface IAgendamentoService : IBaseService<AgendamentoResponse>
+    public interface IAgendamentoService : ICrudService<AgendamentoResponse, AgendamentoRequest, AgendamentoUpdate>
     {
-        Task<OperationResult> Create(AgendamentoRequest result);
-        Task<OperationResult> Update(AgendamentoUpdate result);
     }
 }

@@ -18,7 +18,7 @@ namespace Domain.entities.baseEntities
         public FormaPagamento FormaPagamento { get; private set; }
         public Contato Contato { get; private set; }
         public Endereco Endereco { get; private set; }
-        public IList<Agendamento> HistoricoAgendameto { get; private set; } = new List<Agendamento>();
+        public IList<Agendamento> HistoricoAgendamento { get; private set; } = [];
         public bool Ativo { get; private set; } = true;
         public string RefreshToken { get; private set; }
         public DateTime TokenIssuedAt { get; private set; }

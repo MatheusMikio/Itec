@@ -3,11 +3,9 @@ using Domain.DTOs.Tecnico;
 
 namespace Domain.Interfaces.Services
 {
-    public interface ITecnicoService : IBaseService<TecnicoResponse>, IBaseUserService<TecnicoResponse>
+    public interface ITecnicoService : ICrudService<TecnicoResponse, TecnicoRequest, TecnicoUpdate>, IBaseUserService<TecnicoResponse>
     {
         Task<OperationResult<TecnicoResponse>> GetById(Guid id);
-        Task<OperationResult> Create(TecnicoRequest request);
-        Task<OperationResult> Update(TecnicoUpdate request);
         Task<OperationResult> Delete(Guid id);
     }
 }

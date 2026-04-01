@@ -15,6 +15,8 @@ namespace Infra.Repositories
         {
         }
 
-        public async Task<Cliente> GetById(Guid id) => await _context.Set<Cliente>().FirstOrDefaultAsync(c => c.PublicId == id);
+        public async Task<Cliente> GetById(Guid id) => await _context.Set<Cliente>()
+            .Include(c => c.HistoricoAgendamento)
+            .FirstOrDefaultAsync(c => c.PublicId == id);
     }
 }

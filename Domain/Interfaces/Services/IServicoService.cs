@@ -5,9 +5,7 @@ using System.Text;
 
 namespace Domain.Interfaces.Services
 {
-    public interface IServicoService : IBaseService<ServicoResponse>
+    public interface IServicoService : ICrudService<ServicoResponse, ServicoRequest, ServicoUpdate>
     {
-        Task<OperationResult> Create(ServicoRequest request);
-        Task<OperationResult> Update(ServicoUpdate request);
     }
 }

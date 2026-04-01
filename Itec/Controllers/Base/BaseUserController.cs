@@ -5,9 +5,11 @@ namespace Itec.Controllers.Base
 {
     [Route("api/[controller]")]
     [ApiController]
-    public abstract class BaseUserController<TResponseDTO, TService> : BaseController<TResponseDTO, TService>
+    public abstract class BaseUserController<TResponseDTO, TRequestDTO, TUpdateDTO, TService> : BaseController<TResponseDTO, TRequestDTO, TUpdateDTO, TService>
         where TResponseDTO : class
-        where TService : IBaseService<TResponseDTO>, IBaseUserService<TResponseDTO>
+        where TRequestDTO : class
+        where TUpdateDTO : class
+        where TService : ICrudService<TResponseDTO, TRequestDTO, TUpdateDTO>, IBaseUserService<TResponseDTO>
     {
         protected BaseUserController(TService service) : base(service)
         {

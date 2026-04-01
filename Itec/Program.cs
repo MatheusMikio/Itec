@@ -9,8 +9,7 @@ using Infra.Repositories;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplicationMapping();
-builder.Services.AddDbContext<ItecDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<ItecDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
 builder.Services.AddScoped<IClienteService, ClienteService>();

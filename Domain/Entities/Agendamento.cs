@@ -24,8 +24,6 @@ namespace Domain.entities
         public Agendamento(AgendamentoRequest request)
         {
             Data = request.Data;
-            TecnicoId = request.TecnicoId;
-            ClienteId = request.ClienteId;
             ServicoId = request.ServicoId;
         }
 

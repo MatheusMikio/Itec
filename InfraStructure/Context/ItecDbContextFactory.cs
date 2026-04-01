@@ -16,14 +16,11 @@ namespace InfraStructure.Context
                 .AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true)
                 .Build();
 
-            var connectionString = configuration.GetConnectionString("Itec")
-                ?? configuration.GetConnectionString("DefaultConnection");
+            var connectionString = configuration.GetConnectionString("Itec") ?? configuration.GetConnectionString("DefaultConnection");
 
             var optionsBuilder = new DbContextOptionsBuilder<ItecDbContext>();
-            if (!string.IsNullOrWhiteSpace(connectionString))
-            {
-                optionsBuilder.UseNpgsql(connectionString);
-            }
+            
+            if (!string.IsNullOrWhiteSpace(connectionString)) optionsBuilder.UseNpgsql(connectionString);
 
             return new ItecDbContext(optionsBuilder.Options);
         }

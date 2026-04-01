@@ -15,6 +15,8 @@ namespace Infra.Repositories
         {
         }
 
-        public async Task<Tecnico> GetById(Guid id) => await _context.Set<Tecnico>().FirstOrDefaultAsync(t => t.PublicId == id);
+        public async Task<Tecnico> GetById(Guid id) => await _context.Set<Tecnico>()
+            .Include(t => t.HistoricoAgendamento)
+            .FirstOrDefaultAsync(t => t.PublicId == id);
     }
 }

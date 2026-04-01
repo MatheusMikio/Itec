@@ -33,7 +33,7 @@ public partial class ItecDbContext : DbContext
             entity.Property(x => x.CPF).IsRequired();
             entity.Property(x => x.Role).IsRequired();
 
-            entity.Ignore(x => x.HistoricoAgendameto);
+            entity.Ignore(x => x.HistoricoAgendamento);
 
             entity.OwnsOne(x => x.Contato, contato =>
             {
@@ -61,14 +61,17 @@ public partial class ItecDbContext : DbContext
 
                 formaPagamento.OwnsOne(f => f.Cartao, cartao =>
                 {
-                    cartao.Property(c => c.Numero)
+                    cartao.Property(c => c.UltimosQuatroDigitos)
                         .HasColumnName("CartaoNumero")
                         .IsRequired();
                     cartao.Property(c => c.Bandeira)
                         .HasColumnName("CartaoBandeira")
                         .IsRequired();
-                    cartao.Property(c => c.Validade)
-                        .HasColumnName("CartaoValidade")
+                    cartao.Property(c => c.MesExpiracao)
+                        .HasColumnName("MesExpiracao")
+                        .IsRequired();
+                    cartao.Property(c => c.AnoExpiracao)
+                        .HasColumnName("AnoExpiracao")
                         .IsRequired();
                 });
             });
@@ -83,7 +86,7 @@ public partial class ItecDbContext : DbContext
             entity.Property(x => x.Descricao).IsRequired();
             entity.Property(x => x.Role).IsRequired();
 
-            entity.Ignore(x => x.HistoricoAgendameto);
+            entity.Ignore(x => x.HistoricoAgendamento);
 
             entity.OwnsOne(x => x.Contato, contato =>
             {
@@ -111,14 +114,17 @@ public partial class ItecDbContext : DbContext
 
                 formaPagamento.OwnsOne(f => f.Cartao, cartao =>
                 {
-                    cartao.Property(c => c.Numero)
+                    cartao.Property(c => c.UltimosQuatroDigitos)
                         .HasColumnName("CartaoNumero")
                         .IsRequired();
                     cartao.Property(c => c.Bandeira)
                         .HasColumnName("CartaoBandeira")
                         .IsRequired();
-                    cartao.Property(c => c.Validade)
-                        .HasColumnName("CartaoValidade")
+                    cartao.Property(c => c.MesExpiracao)
+                        .HasColumnName("MesExpiracao")
+                        .IsRequired();
+                    cartao.Property(c => c.AnoExpiracao)
+                        .HasColumnName("AnoExpiracao")
                         .IsRequired();
                 });
             });

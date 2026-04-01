@@ -6,9 +6,11 @@ namespace Itec.Controllers.Base
 {
     [Route("api/[controller]")]
     [ApiController]
-    public abstract class BaseController<TResponseDTO, TService> : ControllerBase
+    public abstract class BaseController<TResponseDTO, TRequestDTO, TUpdateDTO, TService> : ControllerBase
         where TResponseDTO : class
-        where TService : IBaseService<TResponseDTO>
+        where TRequestDTO : class
+        where TUpdateDTO : class
+        where TService : ICrudService<TResponseDTO, TRequestDTO, TUpdateDTO>
     {
         protected readonly TService _service;
 
@@ -35,6 +37,26 @@ namespace Itec.Controllers.Base
             if (result.Success != true) return StatusCode(result.StatusCode, result.Errors);
 
             return StatusCode(result.StatusCode, result.Data);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] TRequestDTO request)
+        {
+            var result = await _service.Create(request);
+
+            if (result.Success != true) return StatusCode(result.StatusCode, result.Errors);
+
+            return StatusCode(result.StatusCode);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] TUpdateDTO request)
+        {
+            var result = await _service.Update(request);
+
+            if (result.Success != true) return StatusCode(result.StatusCode, result.Errors);
+
+            return StatusCode(result.StatusCode);
         }
 
         [HttpDelete("{id}")]

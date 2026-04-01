@@ -25,10 +25,7 @@ namespace Application.Services
         public async Task<OperationResult<List<DTOResponse>>> GetAll(int page, int size)
         {
             List<T> entities = await _repository.GetAll(page, size);
-            if (entities == null || !entities.Any())
-            {
-                return OperationResult<List<DTOResponse>>.Ok(new List<DTOResponse>());
-            }
+            if (entities == null || !entities.Any()) return OperationResult<List<DTOResponse>>.Ok(new List<DTOResponse>());
 
             List<DTOResponse> mappedEntities = _mapper.Map<List<DTOResponse>>(entities);
             return OperationResult<List<DTOResponse>>.Ok(mappedEntities);
@@ -37,10 +34,7 @@ namespace Application.Services
         public async Task<OperationResult<DTOResponse>> GetById(long id)
         {
             T entity = await _repository.GetById(id);
-            if (entity == null)
-            {
-                return OperationResult<DTOResponse>.NotFound(new MensagemErro(typeof(T).Name, "Não encontrado."));
-            }
+            if (entity == null)  return OperationResult<DTOResponse>.NotFound(new MensagemErro(typeof(T).Name, "Não encontrado."));
 
             DTOResponse mappedEntity = _mapper.Map<DTOResponse>(entity);
             return OperationResult<DTOResponse>.Ok(mappedEntity);   
@@ -49,10 +43,7 @@ namespace Application.Services
         public async Task<OperationResult> Delete(long id)
         {
             T entity = await _repository.GetById(id);
-            if (entity == null)
-            {
-                return OperationResult<DTOResponse>.NotFound(new MensagemErro(typeof(T).Name, "Não encontrado."));
-            }
+            if (entity == null) return OperationResult<DTOResponse>.NotFound(new MensagemErro(typeof(T).Name, "Não encontrado."));
 
             await _repository.Delete(entity);
             return OperationResult.Ok();
