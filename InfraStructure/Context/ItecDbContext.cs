@@ -129,6 +129,19 @@ public partial class ItecDbContext : DbContext
                 });
             });
 
+            entity.OwnsMany(x => x.Horarios, horario =>
+            {
+                horario.ToTable("TecnicoHorariosDisponibilidade");
+                horario.WithOwner().HasForeignKey("TecnicoId");
+
+                horario.Property<int>("Id");
+                horario.HasKey("Id");
+
+                horario.Property(h => h.Dia).IsRequired();
+                horario.Property(h => h.Inicio).IsRequired();
+                horario.Property(h => h.Fim).IsRequired();
+            });
+
             entity.HasMany(x => x.Servicos)
                 .WithOne(x => x.Tecnico)
                 .HasForeignKey(x => x.TecnicoId)

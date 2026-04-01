@@ -10,7 +10,7 @@ namespace Application.Mapping
         public void Register(TypeAdapterConfig config)
         {
             config.NewConfig<TecnicoRequest, Tecnico>()
-                .MapWith(src => new Tecnico(src, new List<HorarioDisponibilidade>()));
+                .MapWith(src => new Tecnico(src));
 
             config.NewConfig<Tecnico, TecnicoResponse>()
                 .MapWith(src => new TecnicoResponse(src));

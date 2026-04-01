@@ -11,11 +11,11 @@ namespace Domain.entities
         public IList<Servico> Servicos { get; private set; } = [];
         public IList<HorarioDisponibilidade> Horarios { get; private set; } = [];
 
-        public Tecnico(TecnicoRequest request, List<HorarioDisponibilidade> horarios) : base(request)
+        public Tecnico(TecnicoRequest request) : base(request)
         {
             CpfCnpj = request.CnpjCpf;
             Descricao = request.Descricao;
-            Horarios = horarios;
+            Horarios = request.Horarios;
         }
 
         protected Tecnico() { }

@@ -17,9 +17,10 @@ namespace Domain.DTOs.Tecnico
         public Endereco endereco { get; private set; } = tecnico.Endereco;
         public FormaPagamento FormaPagamento { get; private set; } = tecnico.FormaPagamento;
         public IList<AgendamentoResponse> HistoricoAgendameto { get; private set; } = [];
-        public string CpfCnpj { get; private set; } = string.Empty;
-        public string Descricao { get; private set; } = string.Empty;
+        public string CpfCnpj { get; private set; } = tecnico.CpfCnpj;
+        public string Descricao { get; private set; } = tecnico.Descricao;
         public IList<ServicoResponse > Servicos { get; private set; } = [];
+        public IList<HorarioDisponibilidade> Horarios { get; private set; } = tecnico.Horarios;
         public bool Ativo { get; private set; }
     }
 }
