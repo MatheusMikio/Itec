@@ -5,6 +5,6 @@ namespace Domain.Interfaces
 {
     public interface ITecnicoRepository : IBaseRepository<Tecnico>, IBaseUserRepository<Tecnico>
     {
-        Task<List<Tecnico>> GetAllWithServices();
+        Task<List<Tecnico>> GetAllWithServices(int page, int size);
     }
 }

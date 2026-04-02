@@ -34,12 +34,14 @@ namespace Infra.Repositories
             .Include(t => t.FormaPagamento)
             .FirstOrDefaultAsync(t => t.RefreshToken == refreshToken);
 
-        public async Task<List<Tecnico>> GetAllWithServices() => await _context.Set<Tecnico>()
+        public async Task<List<Tecnico>> GetAllWithServices(int page, int size) => await _context.Set<Tecnico>()
             .Include(t => t.Servicos)
             .Include(t => t.Contato)
             .Include(t => t.Endereco)
             .Include(t => t.Horarios)
             .Where(t => t.Ativo)
+            .Skip((page - 1) * size)
+            .Take(size)
             .ToListAsync();
     }
 }

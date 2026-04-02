@@ -35,7 +35,7 @@ namespace Application.Services
         {
             BaseUser ? user = await GetUserByEmail(request.Email);
             if (user == null || !Argon2Helper.VerifyPassword(request.Senha, user.SenhaHash))
-                return OperationResult<object>.Unauthorized(new MensagemErro("Login", "Email ou senha inválidos"));
+                return OperationResult<object>.Fail(new MensagemErro("Login", "Email ou senha inválidos"));
 
             return await GenerateLoginResponseByRole(user);
         }
@@ -44,7 +44,7 @@ namespace Application.Services
         {
             BaseUser ? user = await GetUserByRefreshToken(request.RefreshToken);
             if (user == null || !user.IsRefreshTokenValid(request.RefreshToken))
-                return OperationResult<object>.Unauthorized(new MensagemErro("RefreshToken", "Refresh token inválido ou expirado"));
+                return OperationResult<object>.Fail(new MensagemErro("RefreshToken", "Refresh token inválido ou expirado"));
 
             return await GenerateLoginResponseByRole(user);
         }

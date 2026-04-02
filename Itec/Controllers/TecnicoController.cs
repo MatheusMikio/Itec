@@ -20,9 +20,12 @@ namespace Itec.Controllers
 
         [HttpGet("public")]
         [AllowAnonymous]
-        public async Task<IActionResult> GetAllPublic()
+        public async Task<IActionResult> GetAllPublic([FromQuery] int page = 1, [FromQuery] int size = 12)
         {
-            var result = await _tecnicoService.GetAllPublic();
+            page = page < 1 ? 1 : page;
+            size = size < 12 ? 12 : Math.Min(size, 100);
+
+            var result = await _tecnicoService.GetAllPublic(page, size);
 
             if (result.Success != true) return StatusCode(result.StatusCode, result.Errors);
 
