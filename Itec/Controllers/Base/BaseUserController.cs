@@ -1,10 +1,13 @@
 ﻿using Domain.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Itec.Controllers.Base
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public abstract class BaseUserController<TResponseDTO, TRequestDTO, TUpdateDTO, TService> : BaseController<TResponseDTO, TRequestDTO, TUpdateDTO, TService>
         where TResponseDTO : class
         where TRequestDTO : class
@@ -13,6 +16,21 @@ namespace Itec.Controllers.Base
     {
         protected BaseUserController(TService service) : base(service)
         {
+        }
+
+        [HttpGet("me")]
+        public async Task<IActionResult> GetMyInfo()
+        {
+            var publicIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            
+            if (string.IsNullOrEmpty(publicIdClaim) || !Guid.TryParse(publicIdClaim, out Guid publicId))
+                return Unauthorized(new { message = "Token inválido" });
+
+            var result = await _service.GetMyInfo(publicId);
+
+            if (result.Success != true) return StatusCode(result.StatusCode, result.Errors);
+
+            return StatusCode(result.StatusCode, result.Data);
         }
 
         [HttpGet("{id:guid}")]

@@ -18,15 +18,8 @@ namespace Itec.Controllers.Base
             _service = service;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int size = 12)
-        {
-            var result = await _service.GetAll(page, size);
-
-            if (result.Success != true) return StatusCode(result.StatusCode, result.Errors);
-
-            return StatusCode(result.StatusCode, result.Data);
-        }
+        // GetAll removido - deve ser implementado especificamente em cada controller
+        // Para usuários (Cliente/Tecnico), use o endpoint "me" ou endpoints públicos específicos
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(long id)

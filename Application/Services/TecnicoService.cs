@@ -15,6 +15,15 @@ namespace Application.Services
             _tecnicoRepository = repository;
         }
 
+        public async Task<OperationResult<List<TecnicoResponse>>> GetAllPublic()
+        {
+            List<Tecnico> tecnicos = await _tecnicoRepository.GetAllWithServices();
+            if (tecnicos == null || !tecnicos.Any())  return OperationResult<List<TecnicoResponse>>.Ok(new List<TecnicoResponse>());
+
+            List<TecnicoResponse> mappedTecnicos = _mapper.Map<List<TecnicoResponse>>(tecnicos);
+            return OperationResult<List<TecnicoResponse>>.Ok(mappedTecnicos);
+        }
+
         public Task<OperationResult> Create(TecnicoRequest request)
         {
             throw new NotImplementedException();

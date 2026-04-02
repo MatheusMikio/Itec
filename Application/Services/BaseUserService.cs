@@ -27,6 +27,15 @@ namespace Application.Services
             return OperationResult<TResponseDTO>.Ok(mapped);
         }
 
+        public async Task<OperationResult<TResponseDTO>> GetMyInfo(Guid publicId)
+        {
+            TEntity entity = await _userRepository.GetByPublicId(publicId);
+            if (entity == null) return OperationResult<TResponseDTO>.NotFound(new MensagemErro(typeof(TEntity).Name, "Não encontrado."));
+
+            TResponseDTO mapped = _mapper.Map<TResponseDTO>(entity);
+            return OperationResult<TResponseDTO>.Ok(mapped);
+        }
+
         public async Task<OperationResult> Delete(Guid id)
         {
             TEntity entity = await _userRepository.GetById(id);

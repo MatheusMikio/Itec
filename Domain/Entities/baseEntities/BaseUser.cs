@@ -18,6 +18,7 @@ namespace Domain.entities.baseEntities
         public bool Ativo { get; private set; } = true;
         public string RefreshToken { get; private set; }
         public DateTime TokenIssuedAt { get; private set; }
+        
         protected BaseUser(BaseUserRequest request)
         {
             Nome = request.Nome;
@@ -30,5 +31,25 @@ namespace Domain.entities.baseEntities
 
         protected BaseUser() { }
 
+        public void SetRefreshToken(string refreshToken)
+        {
+            RefreshToken = refreshToken;
+            TokenIssuedAt = DateTime.UtcNow;
+        }
+
+        public void ClearRefreshToken()
+        {
+            RefreshToken = string.Empty;
+            TokenIssuedAt = DateTime.MinValue;
+        }
+
+        public bool IsRefreshTokenValid(string refreshToken)
+        {
+            if (string.IsNullOrEmpty(RefreshToken)) return false;
+            if (RefreshToken != refreshToken) return false;
+            
+            var expirationDate = TokenIssuedAt.AddDays(7);
+            return DateTime.UtcNow < expirationDate;
+        }
     }
 }
