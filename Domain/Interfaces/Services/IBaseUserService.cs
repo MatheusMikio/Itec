@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Domain.Interfaces.Services
+﻿namespace Domain.Interfaces.Services
 {
     public interface IBaseUserService<TResponseDTO>
     {

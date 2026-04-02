@@ -1,9 +1,5 @@
 ﻿using Domain.Enums;
 using Domain.models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Domain.DTOs
 {

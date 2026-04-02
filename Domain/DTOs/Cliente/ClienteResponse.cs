@@ -1,7 +1,6 @@
 ﻿using Domain.DTOs.Agendamento;
 using Domain.models;
 
-
 namespace Domain.DTOs.Cliente
 {
     public class ClienteResponse(entities.Cliente cliente)
@@ -14,6 +13,5 @@ namespace Domain.DTOs.Cliente
         public FormaPagamento FormaPagamento { get; private set; } = cliente.FormaPagamento;
         public IList<AgendamentoResponse> HistoricoAgendameto { get; private set; } = [];
         public bool Ativo { get; private set; }
-
     }
 }

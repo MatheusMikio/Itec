@@ -1,15 +1,8 @@
 ﻿using Application.Mapping;
-using Domain.DTOs.Fatura;
 using Domain.DTOs.Tecnico;
 using Domain.entities;
 using Domain.Interfaces;
-using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
-using Domain.models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Services
 {
@@ -33,4 +26,3 @@ namespace Application.Services
         }
     }
 }
-    

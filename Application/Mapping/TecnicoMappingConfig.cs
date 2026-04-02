@@ -1,6 +1,5 @@
 using Domain.DTOs.Tecnico;
 using Domain.entities;
-using Domain.models;
 using Mapster;
 
 namespace Application.Mapping

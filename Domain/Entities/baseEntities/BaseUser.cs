@@ -1,10 +1,6 @@
 ﻿using Domain.DTOs;
-using Domain.DTOs.Cliente;
 using Domain.Enums;
 using Domain.models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Domain.entities.baseEntities
 {

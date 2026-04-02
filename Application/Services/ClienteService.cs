@@ -2,12 +2,8 @@
 using Domain.DTOs.Cliente;
 using Domain.entities;
 using Domain.Interfaces;
-using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
 using Domain.models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Application.Services
 {

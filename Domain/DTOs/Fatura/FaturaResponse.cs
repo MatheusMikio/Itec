@@ -1,9 +1,5 @@
 ﻿using Domain.DTOs.Agendamento;
-using Domain.entities;
 using Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Domain.DTOs.Fatura
 {

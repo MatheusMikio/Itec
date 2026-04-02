@@ -1,6 +1,5 @@
 using Application.Mapping;
 using Domain.entities.baseEntities;
-using Domain.Interfaces;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
 using Domain.models;

@@ -1,11 +1,6 @@
 ﻿using Domain.Interfaces.Repositories;
 using InfraStructure.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InfraStructure.Repositories
 {
@@ -28,19 +23,19 @@ namespace InfraStructure.Repositories
         public async Task Create(T entity)
         {
             _context.Set<T>().Add(entity);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public async Task Update(T entity)
         {
             _context.Set<T>().Update(entity);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public async Task Delete(T entity)
         {
             _context.Set<T>().Remove(entity);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
         
     }

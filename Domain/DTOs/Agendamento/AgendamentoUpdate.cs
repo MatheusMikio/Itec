@@ -1,9 +1,4 @@
-﻿using Domain.entities;
-using Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿using Domain.Enums;
 namespace Domain.DTOs.Agendamento
 {
     public class AgendamentoUpdate

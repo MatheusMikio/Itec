@@ -3,9 +3,6 @@ using Domain.Interfaces;
 using InfraStructure.Context;
 using InfraStructure.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Infra.Repositories
 {

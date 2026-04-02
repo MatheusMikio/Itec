@@ -1,8 +1,5 @@
 ﻿using Domain.entities.baseEntities;
 using Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Domain.entities
 {

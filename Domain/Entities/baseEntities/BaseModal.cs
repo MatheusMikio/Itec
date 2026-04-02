@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Domain.entities.baseEntities
+﻿namespace Domain.entities.baseEntities
 {
     public abstract class BaseModel
     {

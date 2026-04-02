@@ -1,11 +1,7 @@
 ﻿using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
 using Domain.models;
-using Mapster;
 using Application.Mapping;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Application.Services
 {

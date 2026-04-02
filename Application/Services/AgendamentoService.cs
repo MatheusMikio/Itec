@@ -2,13 +2,9 @@
 using Domain.DTOs.Agendamento;
 using Domain.entities;
 using Domain.Interfaces;
-using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
 using Domain.models;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Application.Services
 {

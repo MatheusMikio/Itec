@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Domain.DTOs.Cliente
+﻿namespace Domain.DTOs.Cliente
 {
     public class ClienteRequest : BaseUserRequest
     {

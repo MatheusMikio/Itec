@@ -1,5 +1,4 @@
 ﻿using Domain.Interfaces.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Itec.Controllers.Base

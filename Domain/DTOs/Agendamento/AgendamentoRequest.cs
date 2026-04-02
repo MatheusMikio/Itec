@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Domain.DTOs.Agendamento
+﻿namespace Domain.DTOs.Agendamento
 {
     public class AgendamentoRequest
     {

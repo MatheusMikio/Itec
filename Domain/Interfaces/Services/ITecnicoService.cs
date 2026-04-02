@@ -1,5 +1,4 @@
-﻿using Domain.DTOs.Cliente;
-using Domain.DTOs.Tecnico;
+﻿using Domain.DTOs.Tecnico;
 
 namespace Domain.Interfaces.Services
 {

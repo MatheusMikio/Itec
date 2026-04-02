@@ -1,10 +1,6 @@
 ﻿using Domain.DTOs.Agendamento;
 using Domain.DTOs.Servico;
-using Domain.entities;
 using Domain.models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Domain.DTOs.Tecnico
 {
