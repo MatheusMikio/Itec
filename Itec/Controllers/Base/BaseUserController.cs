@@ -18,6 +18,20 @@ namespace Itec.Controllers.Base
         {
         }
 
+        [HttpGet]
+        [Authorize(Policy = "AdminOnly")]
+        public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int size = 12)
+        {
+            page = page < 1 ? 1 : page;
+            size = size < 12 ? 12 : Math.Min(size, 100);
+
+            var result = await _service.GetAll(page, size);
+
+            if (result.Success != true) return StatusCode(result.StatusCode, result.Errors);
+
+            return StatusCode(result.StatusCode, result.Data);
+        }
+
         [HttpGet("me")]
         public async Task<IActionResult> GetMyInfo()
         {

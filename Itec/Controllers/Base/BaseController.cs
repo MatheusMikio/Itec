@@ -18,9 +18,6 @@ namespace Itec.Controllers.Base
             _service = service;
         }
 
-        // GetAll removido - deve ser implementado especificamente em cada controller
-        // Para usuários (Cliente/Tecnico), use o endpoint "me" ou endpoints públicos específicos
-
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(long id)
         {
