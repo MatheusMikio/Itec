@@ -33,8 +33,7 @@ public class OperationResult<T> : OperationResult
 {
     public T ? Data { get; private init; }
 
-    private OperationResult(bool success, int statusCode, T? data = default, IEnumerable<MensagemErro> ? errors = null)
-        : base(success, statusCode, errors)
+    private OperationResult(bool success, int statusCode, T? data = default, IEnumerable<MensagemErro> ? errors = null) : base(success, statusCode, errors)
     {
         Data = data;
     }
@@ -48,6 +47,5 @@ public class OperationResult<T> : OperationResult
     public static new OperationResult<T> Forbidden(MensagemErro error) => new(false, 403, default, [error]);
     public static new OperationResult<T> UnprocessableEntity(IEnumerable<MensagemErro> errors) => new(false, 422, default, errors);
     public static new OperationResult<T> UnprocessableEntity(MensagemErro error) => new(false, 422, default, [error]);
-
     public static OperationResult<T> FromResult(OperationResult result) => new(result.Success, result.StatusCode, default, result.Errors);
 }

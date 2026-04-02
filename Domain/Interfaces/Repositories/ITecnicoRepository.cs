@@ -6,8 +6,7 @@ using System.Text;
 
 namespace Domain.Interfaces
 {
-    public interface ITecnicoRepository : IBaseRepository<Tecnico>
+    public interface ITecnicoRepository : IBaseRepository<Tecnico>, IBaseUserRepository<Tecnico>
     {
-        Task<Tecnico> GetById(Guid id);
     }
 }

@@ -11,22 +11,13 @@ using System.Text;
 
 namespace Application.Services
 {
-    public class ClienteService : BaseService<Cliente, ClienteResponse>, IClienteService
+    public class ClienteService : BaseUserService<Cliente, ClienteResponse, IClienteRepository>, IClienteService
     {
         private readonly IClienteRepository _clienteRepository;
 
         public ClienteService(IClienteRepository repository, IMapper mapper) : base(repository, mapper)
         {
             _clienteRepository = repository;
-        }
-
-        public async Task<OperationResult<ClienteResponse>> GetById(Guid id)
-        {
-            Cliente entity = await _clienteRepository.GetById(id);
-            if (entity == null) return OperationResult<ClienteResponse>.NotFound(new MensagemErro(typeof(Cliente).Name, "Não encontrado."));
-
-            ClienteResponse mapped = _mapper.Map<ClienteResponse>(entity);
-            return OperationResult<ClienteResponse>.Ok(mapped);
         }
 
         public Task<OperationResult> Create(ClienteRequest request)
@@ -66,16 +57,7 @@ namespace Application.Services
             }        
         }
 
-        public async Task<OperationResult> Delete(Guid id)
-        {
-            Cliente entity = await _clienteRepository.GetById(id);
-            if (entity == null) return OperationResult.NotFound(new MensagemErro(typeof(Cliente).Name, "Não encontrado."));
-
-            await _repository.Delete(entity);
-            return OperationResult.Ok();
-        }
-
-        private static List<MensagemErro> Validate(ClienteRequest request) 
+        private static List<MensagemErro> Validate(ClienteRequest request)
         {
             return new List<MensagemErro>();
         }

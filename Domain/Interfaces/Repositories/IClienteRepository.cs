@@ -6,8 +6,7 @@ using System.Text;
 
 namespace Domain.Interfaces
 {
-    public interface IClienteRepository : IBaseRepository<Cliente>
+    public interface IClienteRepository : IBaseRepository<Cliente>, IBaseUserRepository<Cliente>
     {
-        Task<Cliente> GetById(Guid id);
     }
 }
