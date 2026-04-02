@@ -1,4 +1,5 @@
 ﻿using Domain.Interfaces.Services;
+using Domain.models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -37,8 +38,8 @@ namespace Itec.Controllers.Base
         {
             var publicIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             
-            if (string.IsNullOrEmpty(publicIdClaim) || !Guid.TryParse(publicIdClaim, out Guid publicId))
-                return Unauthorized(new { message = "Token inválido" });
+            if (string.IsNullOrEmpty(publicIdClaim) || !Guid.TryParse(publicIdClaim, out Guid publicId)) 
+                return Unauthorized(OperationResult.Unauthorized(new MensagemErro("Não autorizado.", "Usuario inválido")));
 
             var result = await _service.GetMyInfo(publicId);
 
@@ -58,6 +59,7 @@ namespace Itec.Controllers.Base
         }
 
         [HttpDelete("{id:guid}")]
+        [Authorize(Policy ="AdminOnly")]
         public async Task<IActionResult> Delete(Guid id)
         {
             var result = await _service.Delete(id);

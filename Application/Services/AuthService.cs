@@ -33,8 +33,8 @@ namespace Application.Services
 
         public async Task<OperationResult<object>> Login(LoginRequest request)
         {
-            BaseUser user = await GetUserByEmail(request.Email);
-            if (user == null || !Argon2Helper.VerifyPassword(request.Senha, user.SenhaHash)) 
+            BaseUser ? user = await GetUserByEmail(request.Email);
+            if (user == null || !Argon2Helper.VerifyPassword(request.Senha, user.SenhaHash))
                 return OperationResult<object>.Unauthorized(new MensagemErro("Login", "Email ou senha inválidos"));
 
             return await GenerateLoginResponseByRole(user);
@@ -42,19 +42,18 @@ namespace Application.Services
 
         public async Task<OperationResult<object>> RefreshToken(RefreshTokenRequest request)
         {
-            BaseUser user = await GetUserByRefreshToken(request.RefreshToken);
+            BaseUser ? user = await GetUserByRefreshToken(request.RefreshToken);
             if (user == null || !user.IsRefreshTokenValid(request.RefreshToken))
                 return OperationResult<object>.Unauthorized(new MensagemErro("RefreshToken", "Refresh token inválido ou expirado"));
 
             return await GenerateLoginResponseByRole(user);
-
         }
 
         public async Task<OperationResult> Logout(Guid publicId)
         {
-            BaseUser user = await GetUserByPublicId(publicId);
+            BaseUser ? user = await GetUserByPublicId(publicId);
             if (user == null) return OperationResult.NotFound(new MensagemErro("Logout", "Usuário não encontrado"));
-
+                
             user.ClearRefreshToken();
 
             OperationResult updateResult = await UpdateUserByRole(user);
@@ -65,35 +64,29 @@ namespace Application.Services
 
         private async Task<BaseUser?> GetUserByEmail(string email)
         {
-            Task<Tecnico> tecnicoTask = _tecnicoRepository.GetByEmail(email);
-            Task<Cliente> clienteTask = _clienteRepository.GetByEmail(email);
+            Tecnico ? tecnico = await _tecnicoRepository.GetByEmail(email);
+            if (tecnico is not null) return tecnico;
 
-            await Task.WhenAll(tecnicoTask, clienteTask);
-
-            BaseUser ? user = tecnicoTask.Result;
-            return user ?? clienteTask.Result;
+            Cliente ? cliente = await _clienteRepository.GetByEmail(email);
+            return cliente;
         }
 
         private async Task<BaseUser?> GetUserByRefreshToken(string refreshToken)
         {
-            Task<Tecnico> tecnicoTask = _tecnicoRepository.GetByRefreshToken(refreshToken);
-            Task<Cliente> clienteTask = _clienteRepository.GetByRefreshToken(refreshToken);
+            Tecnico? tecnico = await _tecnicoRepository.GetByRefreshToken(refreshToken);
+            if (tecnico is not null) return tecnico;
 
-            await Task.WhenAll(tecnicoTask, clienteTask);
-
-            BaseUser? user = tecnicoTask.Result;
-            return user ?? clienteTask.Result;
+            Cliente? cliente = await _clienteRepository.GetByRefreshToken(refreshToken);
+            return cliente;
         }
 
         private async Task<BaseUser?> GetUserByPublicId(Guid publicId)
         {
-            Task<Tecnico> tecnicoTask = _tecnicoRepository.GetByPublicId(publicId);
-            Task<Cliente> clienteTask = _clienteRepository.GetByPublicId(publicId);
+            Tecnico ? tecnico = await _tecnicoRepository.GetByPublicId(publicId);
+            if (tecnico is not null) return tecnico;
 
-            await Task.WhenAll(tecnicoTask, clienteTask);
-
-            BaseUser? user = tecnicoTask.Result;
-            return user ?? clienteTask.Result;
+            Cliente ? cliente = await _clienteRepository.GetByPublicId(publicId);
+            return cliente;
         }
 
         private async Task<OperationResult<object>> GenerateLoginResponseByRole(BaseUser user)
@@ -128,7 +121,6 @@ namespace Application.Services
                 default:
                     return OperationResult.Unauthorized(new MensagemErro("Auth", "Role de usuário inválida para autenticação"));
             }
-
         }
 
         private async Task<OperationResult<LoginResponse<TUserResponse>>> GenerateLoginResponse<TUserResponse>(BaseUser user) where TUserResponse : class
