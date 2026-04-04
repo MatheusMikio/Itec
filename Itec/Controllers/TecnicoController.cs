@@ -31,5 +31,16 @@ namespace Itec.Controllers
 
             return StatusCode(result.StatusCode, result.Data);
         }
+
+        [HttpGet("public/{publicId}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetByIdPublic(Guid publicId)
+        {
+            var result = await _tecnicoService.GetByIdPublic(publicId);
+
+            if (result.Success != true) return StatusCode(result.StatusCode, result.Errors);
+
+            return StatusCode(result.StatusCode, result.Data);
+        }
     }
 }

@@ -13,6 +13,12 @@ namespace Application.Mapping
 
             config.NewConfig<Tecnico, TecnicoResponse>()
                 .MapWith(src => new TecnicoResponse(src));
+
+            config.NewConfig<Tecnico, TecnicoPublicSummary>()
+                .MapWith(src => new TecnicoPublicSummary(src));
+
+            config.NewConfig<Tecnico, TecnicoPublicDetail>()
+                .MapWith(src => new TecnicoPublicDetail(src));
         }
     }
 }

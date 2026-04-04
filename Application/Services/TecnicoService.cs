@@ -3,6 +3,7 @@ using Domain.DTOs.Tecnico;
 using Domain.entities;
 using Domain.Interfaces;
 using Domain.Interfaces.Services;
+using Domain.models;
 
 namespace Application.Services
 {
@@ -15,13 +16,22 @@ namespace Application.Services
             _tecnicoRepository = repository;
         }
 
-        public async Task<OperationResult<List<TecnicoResponse>>> GetAllPublic(int page, int size)
+        public async Task<OperationResult<List<TecnicoPublicSummary>>> GetAllPublic(int page, int size)
         {
-            List<Tecnico> tecnicos = await _tecnicoRepository.GetAllWithServices(page, size);
-            if (tecnicos == null || !tecnicos.Any())  return OperationResult<List<TecnicoResponse>>.Ok(new List<TecnicoResponse>());
+            List<Tecnico> tecnicos = await _tecnicoRepository.GetAllPublicSummary(page, size);
+            if (tecnicos == null || !tecnicos.Any())  return OperationResult<List<TecnicoPublicSummary>>.Ok(new List<TecnicoPublicSummary>());
 
-            List<TecnicoResponse> mappedTecnicos = _mapper.Map<List<TecnicoResponse>>(tecnicos);
-            return OperationResult<List<TecnicoResponse>>.Ok(mappedTecnicos);
+            List<TecnicoPublicSummary> mappedTecnicos = _mapper.Map<List<TecnicoPublicSummary>>(tecnicos);
+            return OperationResult<List<TecnicoPublicSummary>>.Ok(mappedTecnicos);
+        }
+
+        public async Task<OperationResult<TecnicoPublicDetail>> GetByIdPublic(Guid publicId)
+        {
+            Tecnico tecnico = await _tecnicoRepository.GetPublicDetailById(publicId);
+            if (tecnico == null) return OperationResult<TecnicoPublicDetail>.NotFound(new MensagemErro("Tecnico", "Não encontrado"));
+
+            TecnicoPublicDetail mappedTecnico = _mapper.Map<TecnicoPublicDetail>(tecnico);
+            return OperationResult<TecnicoPublicDetail>.Ok(mappedTecnico);
         }
 
         public Task<OperationResult> Create(TecnicoRequest request)
